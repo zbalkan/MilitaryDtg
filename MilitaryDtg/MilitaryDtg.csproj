@@ -7,8 +7,8 @@
     <ProjectGuid>{FE73EF0B-609A-49F1-882A-D267BDCA7C3F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Usa.Mil.Dtg</RootNamespace>
-    <AssemblyName>Usa.Mil.Dtg</AssemblyName>
+    <RootNamespace>MilitaryDtg</RootNamespace>
+    <AssemblyName>MilitaryDtg</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

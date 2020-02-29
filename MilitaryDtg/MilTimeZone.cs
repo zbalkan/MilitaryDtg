@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Usa.Mil.Dtg
+namespace MilitaryDtg
 {
     public class MilTimeZone : IMilTimeZone
     {
