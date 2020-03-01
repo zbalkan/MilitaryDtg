@@ -4,10 +4,10 @@ using MilitaryDtg.Properties;
 
 namespace MilitaryDtg.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class DateTimeMilTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void GetMilDateTest()
         {
             var milZoneAbbr = Mil.TimeZoneAbbreviation.C;
@@ -17,7 +17,7 @@ namespace MilitaryDtg.Tests
             Assert.AreEqual(milZoneAbbr, milDtgOffset.MilTimeZone.Abbreviation);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void GetMilDateFromStringTest()
         {
             var dtgString = "07142509 Z OCT 2017";
@@ -61,7 +61,7 @@ namespace MilitaryDtg.Tests
             }
         }
 
-        [TestMethod()]        
+        [TestMethod]        
         public void GetMilDateFromString_NotValidDtgStringTest()
         {
             string dtgString = dtgString = "7ZOCT17"; // Time format is not correct 7 should be 07.  Only a valid DTG format is supported.

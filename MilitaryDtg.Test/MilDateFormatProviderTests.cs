@@ -4,10 +4,10 @@ using MilitaryDtg.Properties;
 
 namespace MilitaryDtg.Tests
 {
-    [TestClass()]
+    [TestClass]
     public class MilDateFormatProviderTests
     {
-        [TestMethod()]
+        [TestMethod]
         public void FormatTest()
         {
             var dtgString = "07142509 Z OCT 2017";
