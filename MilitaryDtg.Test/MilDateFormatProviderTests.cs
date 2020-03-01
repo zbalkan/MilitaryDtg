@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using MilitaryDtg.Properties;
 
-namespace MilitaryDtg.Tests
+namespace MilitaryDtg.Test
 {
     [TestClass]
     public class MilDateFormatProviderTests

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MilitaryDtg
 {
@@ -10,6 +6,6 @@ namespace MilitaryDtg
     {
         IMilTimeZone MilTimeZone { get; set; }
         DateTimeOffset? MilDateOffset { get; set; }
-        string ToString(string format);     
+        string ToString(string format);
     }
 }

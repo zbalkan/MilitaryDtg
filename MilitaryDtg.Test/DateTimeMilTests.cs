@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MilitaryDtg.Properties;
 
-namespace MilitaryDtg.Tests
+namespace MilitaryDtg.Test
 {
     [TestClass]
     public class DateTimeMilTests
@@ -36,7 +36,7 @@ namespace MilitaryDtg.Tests
                 Assert.AreEqual(dtgString, mdto.ToString().ToUpper());
                 Assert.AreEqual(dtgString, mdto.ToString(format).ToUpper());
             }
-           
+
             dtgString = "07ZOCT17";
             if (mdto.MilDateOffset.HasValue)
             {
@@ -48,26 +48,24 @@ namespace MilitaryDtg.Tests
             }
 
             dtgString = "071345CNOV17";
-            if (mdto.MilDateOffset.HasValue)
-            {
-                mdto = DateTimeMil.GetMilDateFromString(dtgString);
-                Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
-                Assert.AreEqual(13, mdto.MilDateOffset.Value.Hour);
-                Assert.AreEqual(45, mdto.MilDateOffset.Value.Minute);
-                Assert.AreEqual(0, mdto.MilDateOffset.Value.Second);
-                Assert.AreEqual(Mil.Alphabet.Charlie, mdto.MilTimeZone.MilTimeZoneName);
-                Assert.AreEqual(11, mdto.MilDateOffset.Value.Month);
-                Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
-            }
+            if (!mdto.MilDateOffset.HasValue) return;
+            mdto = DateTimeMil.GetMilDateFromString(dtgString);
+            Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
+            Assert.AreEqual(13, mdto.MilDateOffset.Value.Hour);
+            Assert.AreEqual(45, mdto.MilDateOffset.Value.Minute);
+            Assert.AreEqual(0, mdto.MilDateOffset.Value.Second);
+            Assert.AreEqual(Mil.Alphabet.Charlie, mdto.MilTimeZone.MilTimeZoneName);
+            Assert.AreEqual(11, mdto.MilDateOffset.Value.Month);
+            Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
         }
 
-        [TestMethod]        
+        [TestMethod]
         public void GetMilDateFromString_NotValidDtgStringTest()
         {
-            string dtgString = dtgString = "7ZOCT17"; // Time format is not correct 7 should be 07.  Only a valid DTG format is supported.
-            IMilDate milDtgOffset = milDtgOffset = DateTimeMil.GetMilDateFromString(dtgString);
-            Assert.AreEqual(null, milDtgOffset.MilDateOffset); 
-            Assert.AreEqual(null, milDtgOffset.MilTimeZone);             
+            const string dtgString = "7ZOCT17"; // Time format is not correct 7 should be 07.  Only a valid DTG format is supported.
+            var milDtgOffset = DateTimeMil.GetMilDateFromString(dtgString);
+            Assert.AreEqual(null, milDtgOffset.MilDateOffset);
+            Assert.AreEqual(null, milDtgOffset.MilTimeZone);
         }
     }
 }

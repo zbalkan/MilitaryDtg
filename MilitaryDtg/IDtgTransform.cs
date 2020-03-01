@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MilitaryDtg
+﻿namespace MilitaryDtg
 {
     internal interface IDtgTransform
     {
@@ -15,6 +9,6 @@ namespace MilitaryDtg
         int Hour { get; set; }
         int Minute { get; set; }
         int Second { get; set; }
-        string MilTimeZoneAbbreviation { get; set; }             
+        string MilTimeZoneAbbreviation { get; set; }
     }
 }

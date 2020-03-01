@@ -1,41 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MilitaryDtg
 {
     public static class DateTimeMil
-    {                       
-        private static readonly IList<IMilTimeZone> _milTimeZones;
-        public static IList<IMilTimeZone> MilTimeZones
-        {
-            get { return _milTimeZones; }
-        }
-
+    {
         static DateTimeMil()
         {
-            _milTimeZones = new List<IMilTimeZone>();
+            MilTimeZones = new List<IMilTimeZone>();
             foreach (var value in Enum.GetValues(typeof(Mil.TimeZoneOffset)))
             {
-                var intVal = (int)value;
+                var intVal = (int) value;
                 var strVal = value.ToString();
-                var tZ = Mil.SystemTimeZones.Where(i => i.BaseUtcOffset.Hours.Equals(intVal)).FirstOrDefault();                
-                var mTName = Mil.TimeZoneNames.Where(z => z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                _milTimeZones.Add(new MilTimeZone() { TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName });
+                var tZ = Mil.SystemTimeZones.FirstOrDefault(i => i.BaseUtcOffset.Hours.Equals(intVal));
+                var mTName = Mil.TimeZoneNames.FirstOrDefault(z =>
+                    z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase));
+                MilTimeZones.Add(new MilTimeZone
+                    {TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName});
             }
         }
+
+        // ReSharper disable once MemberCanBePrivate.Global
+        public static IList<IMilTimeZone> MilTimeZones { get; }
 
         public static IMilDate GetMilDate(DateTime? date, string milTimeZoneAbbreviation)
         {
             IMilDate mdto = new MilDate();
-            if(date.HasValue)
-            {
-                var mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(milTimeZoneAbbreviation)).FirstOrDefault();
-                mdto.MilTimeZone = mtz;
-                mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
-            }            
+            if (!date.HasValue) return mdto;
+            var mtz = MilTimeZones.FirstOrDefault(i =>
+                milTimeZoneAbbreviation != null &&
+                i.Abbreviation.Equals(milTimeZoneAbbreviation, StringComparison.InvariantCulture));
+            mdto.MilTimeZone = mtz;
+            if (mtz != null) mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             return mdto;
         }
 
@@ -44,17 +41,17 @@ namespace MilitaryDtg
             IDtgTransform dT = new DtgTransform(dateTimeGroupString);
             var date = GetDateTime(dT);
             IMilDate mdto = new MilDate();
-            if(date.HasValue)
-            {
-                var mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(dT.MilTimeZoneAbbreviation)).FirstOrDefault();
-                mdto.MilTimeZone = mtz;
-                mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
-            }            
+            if (!date.HasValue) return mdto;
+            var mtz = MilTimeZones.FirstOrDefault(i =>
+                i.Abbreviation != null &&
+                i.Abbreviation.Equals(dT.MilTimeZoneAbbreviation, StringComparison.InvariantCulture));
+            mdto.MilTimeZone = mtz;
+            if (mtz != null) mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             return mdto;
         }
 
         /// <summary>
-        /// Get DateTime either with the time or no time part as provided.
+        ///     Get DateTime either with the time or no time part as provided.
         /// </summary>
         /// <param name="dtgTransform"></param>
         /// <returns></returns>
@@ -62,18 +59,12 @@ namespace MilitaryDtg
         {
             var dT = dtgTransform;
             DateTime? date;
-            var isValid = (dT.Year != 0 && dT.Month != 0 && dT.Day != 0); 
-            if(isValid)
-            {
+            var isValid = dT.Year != 0 && dT.Month != 0 && dT.Day != 0;
+            if (isValid)
                 date = new DateTime(dT.Year, dT.Month, dT.Day, dT.Hour, dT.Minute, dT.Second);
-            }
             else
-            {
-                date = null;                
-            }
+                date = null;
             return date;
-            
         }
-
     }
 }

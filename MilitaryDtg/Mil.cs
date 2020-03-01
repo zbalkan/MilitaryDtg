@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MilitaryDtg
 {
     public struct Mil
     {
         /// <summary>
-        /// Military Phonetic Alphabet properties.
+        ///     Military Phonetic Alphabet properties.
         /// </summary>
         public struct Alphabet
-        {            
+        {
             public static string Alpha => "Alpha";
             public static string Bravo => "Bravo";
             public static string Charlie => "Charlie";
@@ -42,7 +40,7 @@ namespace MilitaryDtg
         }
 
         /// <summary>
-        /// Military time zone abbreviations
+        ///     Military time zone abbreviations
         /// </summary>
         public struct TimeZoneAbbreviation
         {
@@ -74,10 +72,11 @@ namespace MilitaryDtg
         }
 
         #region Military Time Zone Names
+
         /// <summary>
-        /// Military time zone names
+        ///     Military time zone names
         /// </summary>
-        public static IReadOnlyCollection<string> TimeZoneNames = new string[]
+        public static readonly IReadOnlyCollection<string> TimeZoneNames = new[]
         {
             Alphabet.Alpha,
             Alphabet.Bravo,
@@ -105,11 +104,13 @@ namespace MilitaryDtg
             Alphabet.Yankee,
             Alphabet.Zulu
         };
+
         #endregion
 
         #region Time Zone Letter Time Offset Relationship
+
         /// <summary>
-        /// Time zone abbreviation to time offset values
+        ///     Time zone abbreviation to time offset values
         /// </summary>
         public enum TimeZoneOffset
         {
@@ -141,15 +142,16 @@ namespace MilitaryDtg
         }
 
         #endregion
-       
-        /// <summary>
-        /// Global time zones
-        /// </summary>
-        public static IReadOnlyCollection<TimeZoneInfo> SystemTimeZones = TimeZoneInfo.GetSystemTimeZones();
 
         /// <summary>
-        /// Abbreviated month names
+        ///     Global time zones
         /// </summary>
-        public static List<string> AbbreviatedMonthNames = DateTimeFormatInfo.CurrentInfo.AbbreviatedMonthNames.ToList<string>();
+        public static readonly IReadOnlyCollection<TimeZoneInfo> SystemTimeZones = TimeZoneInfo.GetSystemTimeZones();
+
+        /// <summary>
+        ///     Abbreviated month names
+        /// </summary>
+        public static readonly List<string> AbbreviatedMonthNames =
+            DateTimeFormatInfo.CurrentInfo?.AbbreviatedMonthNames.ToList();
     }
 }

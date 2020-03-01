@@ -1,28 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MilitaryDtg.Properties;
 
 namespace MilitaryDtg
 {
     internal sealed class MilDate : IMilDate
     {
-        public DateTimeOffset? MilDateOffset
-        {
-            get;
-            set;
-        }
+        public DateTimeOffset? MilDateOffset { get; set; }
 
-        public IMilTimeZone MilTimeZone
+        public IMilTimeZone MilTimeZone { get; set; }
+
+        /// <summary>
+        ///     Return Date Time Group (DTG) string passing a format
+        /// </summary>
+        /// <param name="format">The DateTimeOffset string format</param>
+        /// <returns></returns>
+        string IMilDate.ToString(string format)
         {
-            get;
-            set;
+            var mdtoString = string.Empty;
+            if (string.IsNullOrEmpty(format)) return mdtoString;
+            if (!format.StartsWith("{", StringComparison.InvariantCulture)) format = "{0:" + format + "}";
+            mdtoString = string.Format(new MilDateFormatProvider(), format, this);
+
+            return mdtoString;
         }
 
         /// <summary>
-        /// Return a default Date Time Group (DTG) string.
+        ///     Return a default Date Time Group (DTG) string.
         /// </summary>
         /// <returns></returns>
         public override string ToString()
@@ -31,25 +34,5 @@ namespace MilitaryDtg
             var mdtoString = string.Format(new MilDateFormatProvider(), format, this);
             return mdtoString;
         }
-
-        /// <summary>
-        /// Return Date Time Group (DTG) string passing a format
-        /// </summary>
-        /// <param name="format">The DateTimeOffset string format</param>
-        /// <returns></returns>
-        string IMilDate.ToString(string format)
-        {
-            var mdtoString = string.Empty;
-            if (!string.IsNullOrEmpty(format))
-            {
-                if (!format.StartsWith("{"))
-                {
-                    format = "{0:" + format + "}";
-                }
-                mdtoString = string.Format(new MilDateFormatProvider(), format, this);
-            }                
-                        
-            return mdtoString;
-        }                      
     }
 }
