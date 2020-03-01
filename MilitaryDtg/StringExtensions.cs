@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MilitaryDtg
 {
-    static class StringExtensions
+    internal static class StringExtensions
     {
         public static IEnumerable<string> SplitInParts(this string s, int partLength)
         {

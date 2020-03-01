@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MilitaryDtg
 {
-    interface IDtgTransform
+    internal interface IDtgTransform
     {
         string DtgStringValue { get; set; }
         int Year { get; set; }

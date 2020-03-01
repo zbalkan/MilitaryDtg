@@ -7,7 +7,7 @@ using MilitaryDtg.Properties;
 
 namespace MilitaryDtg
 {
-    sealed class MilDate : IMilDate
+    internal sealed class MilDate : IMilDate
     {
         public DateTimeOffset? MilDateOffset
         {
