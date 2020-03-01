@@ -74,25 +74,25 @@ namespace MilitaryDtg
             if (String.IsNullOrEmpty(dateTimeGroupString)) throw new ArgumentNullException("dateTimeGroupString");
 
             this.DtgStringValue = dateTimeGroupString;
-            string dtgVal = dateTimeGroupString.Replace(" ", String.Empty);
+            var dtgVal = dateTimeGroupString.Replace(" ", String.Empty);
 
-            string dayTimePart = new string(dtgVal.TakeWhile(c => !Char.IsLetter(c)).ToArray());
+            var dayTimePart = new string(dtgVal.TakeWhile(c => !Char.IsLetter(c)).ToArray());
             if(!String.IsNullOrEmpty(dayTimePart))
                 SetDayHourMinuteSecond(dayTimePart);
 
-            string timeZoneMonthPart = new string(dtgVal.Remove(0, dayTimePart.Length).TakeWhile(c => Char.IsLetter(c)).ToArray());
+            var timeZoneMonthPart = new string(dtgVal.Remove(0, dayTimePart.Length).TakeWhile(c => Char.IsLetter(c)).ToArray());
             if (!String.IsNullOrEmpty(timeZoneMonthPart))
             {
-                string timeZonePart = timeZoneMonthPart.Substring(0, 1);
+                var timeZonePart = timeZoneMonthPart.Substring(0, 1);
                 if (!String.IsNullOrEmpty(timeZonePart))
                     SetTimeZonePart(timeZonePart);
 
-                string monthPart = timeZoneMonthPart.Remove(0, timeZonePart.Length);
+                var monthPart = timeZoneMonthPart.Remove(0, timeZonePart.Length);
                 if (!String.IsNullOrEmpty(monthPart))
                     SetMonthPart(monthPart);
             }                        
 
-            string yearPart = dtgVal.Remove(0, dayTimePart.Length + timeZoneMonthPart.Length);
+            var yearPart = dtgVal.Remove(0, dayTimePart.Length + timeZoneMonthPart.Length);
             if (!String.IsNullOrEmpty(yearPart))
                 SetYearPart(yearPart);
         }
@@ -108,7 +108,7 @@ namespace MilitaryDtg
             int day = 0, hour = 0, minute = 0, second = 0;
             if (dayTimePart.Length % 2 == 0)
             {
-                IEnumerable<string> parts = dayTimePart.SplitInParts(2);
+                var parts = dayTimePart.SplitInParts(2);
                 /*
                  There are day and time values
                  */
@@ -150,7 +150,7 @@ namespace MilitaryDtg
         {
             if (String.IsNullOrEmpty(yearPart)) throw new ArgumentNullException("yearPart");
 
-            int year = 0;
+            var year = 0;
             if (yearPart.Length == 2)
             {
                 // Adheres to current regional settings as defined in Control Panel (or group policy): 

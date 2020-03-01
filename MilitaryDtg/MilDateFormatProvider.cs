@@ -30,19 +30,19 @@ namespace MilitaryDtg
         /// <returns></returns>
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
-            string mildateString = string.Empty;
-            string thisFmt = String.Empty;
+            var mildateString = string.Empty;
+            var thisFmt = String.Empty;
 
             if (!String.IsNullOrEmpty(format))
                 thisFmt = format;
 
             if (arg is IMilDate)
             {
-                char repChar = '*';
-                string dtgTimeZone = Properties.Settings.Default.DateTimeGroupTimeZoneFormatString;
-                string replaceString = String.Empty.PadRight(dtgTimeZone.Length, repChar);
-                IMilDate milDate = arg as IMilDate;
-                DateTimeOffset? dto = milDate.MilDateOffset;
+                var repChar = '*';
+                var dtgTimeZone = Properties.Settings.Default.DateTimeGroupTimeZoneFormatString;
+                var replaceString = String.Empty.PadRight(dtgTimeZone.Length, repChar);
+                var milDate = arg as IMilDate;
+                var dto = milDate.MilDateOffset;
                 mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString)).Replace(replaceString, milDate.MilTimeZone.Abbreviation);
             }
             else

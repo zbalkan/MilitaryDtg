@@ -19,10 +19,10 @@ namespace MilitaryDtg
             _milTimeZones = new List<IMilTimeZone>();
             foreach (var value in Enum.GetValues(typeof(Mil.TimeZoneOffset)))
             {
-                int intVal = (int)value;
-                string strVal = value.ToString();
-                TimeZoneInfo tZ = Mil.SystemTimeZones.Where(i => i.BaseUtcOffset.Hours.Equals(intVal)).FirstOrDefault();                
-                String mTName = Mil.TimeZoneNames.Where(z => z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
+                var intVal = (int)value;
+                var strVal = value.ToString();
+                var tZ = Mil.SystemTimeZones.Where(i => i.BaseUtcOffset.Hours.Equals(intVal)).FirstOrDefault();                
+                var mTName = Mil.TimeZoneNames.Where(z => z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
                 _milTimeZones.Add(new MilTimeZone() { TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName });
             }
         }
@@ -32,7 +32,7 @@ namespace MilitaryDtg
             IMilDate mdto = new MilDate();
             if(date.HasValue)
             {
-                IMilTimeZone mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(milTimeZoneAbbreviation)).FirstOrDefault();
+                var mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(milTimeZoneAbbreviation)).FirstOrDefault();
                 mdto.MilTimeZone = mtz;
                 mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             }            
@@ -42,11 +42,11 @@ namespace MilitaryDtg
         public static IMilDate GetMilDateFromString(string dateTimeGroupString)
         {
             IDtgTransform dT = new DtgTransform(dateTimeGroupString);
-            DateTime? date = GetDateTime(dT);
+            var date = GetDateTime(dT);
             IMilDate mdto = new MilDate();
             if(date.HasValue)
             {
-                IMilTimeZone mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(dT.MilTimeZoneAbbreviation)).FirstOrDefault();
+                var mtz = MilTimeZones.Where(i => i.Abbreviation.Equals(dT.MilTimeZoneAbbreviation)).FirstOrDefault();
                 mdto.MilTimeZone = mtz;
                 mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             }            
@@ -60,9 +60,9 @@ namespace MilitaryDtg
         /// <returns></returns>
         private static DateTime? GetDateTime(IDtgTransform dtgTransform)
         {
-            IDtgTransform dT = dtgTransform;
+            var dT = dtgTransform;
             DateTime? date;
-            bool isValid = (dT.Year != 0 && dT.Month != 0 && dT.Day != 0); 
+            var isValid = (dT.Year != 0 && dT.Month != 0 && dT.Day != 0); 
             if(isValid)
             {
                 date = new DateTime(dT.Year, dT.Month, dT.Day, dT.Hour, dT.Minute, dT.Second);

@@ -10,9 +10,9 @@ namespace MilitaryDtg.Tests
         [TestMethod()]
         public void GetMilDateTest()
         {
-            string milZoneAbbr = Mil.TimeZoneAbbreviation.C;
-            DateTime dt = new DateTime(2012, 4, 14, 7, 8, 11);
-            IMilDate milDtgOffset = DateTimeMil.GetMilDate(dt, milZoneAbbr);
+            var milZoneAbbr = Mil.TimeZoneAbbreviation.C;
+            var dt = new DateTime(2012, 4, 14, 7, 8, 11);
+            var milDtgOffset = DateTimeMil.GetMilDate(dt, milZoneAbbr);
             Assert.AreEqual(Mil.Alphabet.Charlie, milDtgOffset.MilTimeZone.MilTimeZoneName);
             Assert.AreEqual(milZoneAbbr, milDtgOffset.MilTimeZone.Abbreviation);
         }
@@ -20,10 +20,10 @@ namespace MilitaryDtg.Tests
         [TestMethod()]
         public void GetMilDateFromStringTest()
         {
-            string dtgString = "07142509 Z OCT 2017";
-            string format = Settings.Default.DefaultDateTimeGroupStringFormat;
+            var dtgString = "07142509 Z OCT 2017";
+            var format = Settings.Default.DefaultDateTimeGroupStringFormat;
 
-            IMilDate mdto = DateTimeMil.GetMilDateFromString(dtgString);
+            var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (mdto.MilDateOffset.HasValue)
             {
                 Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);

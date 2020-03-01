@@ -27,8 +27,8 @@ namespace MilitaryDtg
         /// <returns></returns>
         public override string ToString()
         {
-            string format = "{0:" + Settings.Default.DefaultDateTimeGroupStringFormat + "}";
-            string mdtoString = String.Format(new MilDateFormatProvider(), format, this);
+            var format = "{0:" + Settings.Default.DefaultDateTimeGroupStringFormat + "}";
+            var mdtoString = String.Format(new MilDateFormatProvider(), format, this);
             return mdtoString;
         }
 
@@ -39,7 +39,7 @@ namespace MilitaryDtg
         /// <returns></returns>
         string IMilDate.ToString(string format)
         {
-            string mdtoString = string.Empty;
+            var mdtoString = string.Empty;
             if (!string.IsNullOrEmpty(format))
             {
                 if (!format.StartsWith("{"))
