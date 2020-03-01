@@ -8,22 +8,22 @@ namespace MilitaryDtg
 {
     public static class DateTimeMil
     {                       
-        private static IList<IMilTimeZone> milTimeZones;
+        private static IList<IMilTimeZone> _milTimeZones;
         public static IList<IMilTimeZone> MilTimeZones
         {
-            get { return milTimeZones; }
+            get { return _milTimeZones; }
         }
 
         static DateTimeMil()
         {
-            milTimeZones = new List<IMilTimeZone>();
+            _milTimeZones = new List<IMilTimeZone>();
             foreach (var value in Enum.GetValues(typeof(Mil.TimeZoneOffset)))
             {
                 int intVal = (int)value;
                 string strVal = value.ToString();
                 TimeZoneInfo tZ = Mil.SystemTimeZones.Where(i => i.BaseUtcOffset.Hours.Equals(intVal)).FirstOrDefault();                
                 String mTName = Mil.TimeZoneNames.Where(z => z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-                milTimeZones.Add(new MilTimeZone() { TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName });
+                _milTimeZones.Add(new MilTimeZone() { TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName });
             }
         }
 
