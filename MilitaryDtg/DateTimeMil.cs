@@ -8,7 +8,7 @@ namespace MilitaryDtg
 {
     public static class DateTimeMil
     {                       
-        private static IList<IMilTimeZone> _milTimeZones;
+        private static readonly IList<IMilTimeZone> _milTimeZones;
         public static IList<IMilTimeZone> MilTimeZones
         {
             get { return _milTimeZones; }
