@@ -31,11 +31,11 @@ namespace MilitaryDtg
             if (arg is IMilDate milDate)
             {
                 const char repChar = '*';
-                var dtgTimeZone = Settings.Default.DateTimeGroupTimeZoneFormatString;
+                var dtgTimeZone = Resources.DateTimeGroupTimeZoneFormatString;
                 var replaceString = string.Empty.PadRight(dtgTimeZone.Length, repChar);
                 var dto = milDate.MilDateOffset;
-                mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString), formatProvider)
-                    .Replace(replaceString, milDate.MilTimeZone.Abbreviation);
+                mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString, StringComparison.InvariantCulture), formatProvider)
+                    .Replace(replaceString, milDate.MilTimeZone.Abbreviation, StringComparison.InvariantCulture);
             }
             else
             {
@@ -58,9 +58,7 @@ namespace MilitaryDtg
         {
             if (arg is IFormattable formattable)
                 return formattable.ToString(format, CultureInfo.CurrentCulture);
-            if (arg != null)
-                return arg.ToString();
-            return string.Empty;
+            return arg != null ? arg.ToString() : string.Empty;
         }
     }
 }

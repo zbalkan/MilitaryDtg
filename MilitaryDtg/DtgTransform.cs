@@ -42,7 +42,7 @@ namespace MilitaryDtg
             if (string.IsNullOrEmpty(dateTimeGroupString)) throw new ArgumentNullException(nameof(dateTimeGroupString));
 
             DtgStringValue = dateTimeGroupString;
-            var dtgVal = dateTimeGroupString.Replace(" ", string.Empty);
+            var dtgVal = dateTimeGroupString.Replace(" ", string.Empty, StringComparison.InvariantCulture);
 
             var dayTimePart = new string(dtgVal.TakeWhile(c => !char.IsLetter(c)).ToArray());
             if (!string.IsNullOrEmpty(dayTimePart))

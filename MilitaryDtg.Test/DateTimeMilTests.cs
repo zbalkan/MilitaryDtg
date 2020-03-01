@@ -21,7 +21,7 @@ namespace MilitaryDtg.Test
         public void GetMilDateFromStringTest()
         {
             var dtgString = "07142509 Z OCT 2017";
-            var format = Settings.Default.DefaultDateTimeGroupStringFormat;
+            var format = Resources.DefaultDateTimeGroupStringFormat;
 
             var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (mdto.MilDateOffset.HasValue)

@@ -30,7 +30,7 @@ namespace MilitaryDtg
         /// <returns></returns>
         public override string ToString()
         {
-            var format = "{0:" + Settings.Default.DefaultDateTimeGroupStringFormat + "}";
+            var format = "{0:" + Resources.DefaultDateTimeGroupStringFormat + "}";
             var mdtoString = string.Format(new MilDateFormatProvider(), format, this);
             return mdtoString;
         }
