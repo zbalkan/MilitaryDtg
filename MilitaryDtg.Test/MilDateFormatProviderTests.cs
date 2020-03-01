@@ -15,7 +15,7 @@ namespace MilitaryDtg.Tests
             var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (mdto.MilDateOffset.HasValue)
             {
-                var mdtoString = String.Format(new MilDateFormatProvider(), format, mdto).ToUpper();
+                var mdtoString = string.Format(new MilDateFormatProvider(), format, mdto).ToUpper();
                 Assert.AreEqual(dtgString, mdtoString);
             }
         }

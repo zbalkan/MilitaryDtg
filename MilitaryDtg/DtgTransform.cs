@@ -71,29 +71,29 @@ namespace MilitaryDtg
         /// <param name="dateTimeGroupString"></param>
         private void ProcessDtgTransform(string dateTimeGroupString)
         {
-            if (String.IsNullOrEmpty(dateTimeGroupString)) throw new ArgumentNullException("dateTimeGroupString");
+            if (string.IsNullOrEmpty(dateTimeGroupString)) throw new ArgumentNullException("dateTimeGroupString");
 
             this.DtgStringValue = dateTimeGroupString;
-            var dtgVal = dateTimeGroupString.Replace(" ", String.Empty);
+            var dtgVal = dateTimeGroupString.Replace(" ", string.Empty);
 
-            var dayTimePart = new string(dtgVal.TakeWhile(c => !Char.IsLetter(c)).ToArray());
-            if(!String.IsNullOrEmpty(dayTimePart))
+            var dayTimePart = new string(dtgVal.TakeWhile(c => !char.IsLetter(c)).ToArray());
+            if(!string.IsNullOrEmpty(dayTimePart))
                 SetDayHourMinuteSecond(dayTimePart);
 
-            var timeZoneMonthPart = new string(dtgVal.Remove(0, dayTimePart.Length).TakeWhile(c => Char.IsLetter(c)).ToArray());
-            if (!String.IsNullOrEmpty(timeZoneMonthPart))
+            var timeZoneMonthPart = new string(dtgVal.Remove(0, dayTimePart.Length).TakeWhile(c => char.IsLetter(c)).ToArray());
+            if (!string.IsNullOrEmpty(timeZoneMonthPart))
             {
                 var timeZonePart = timeZoneMonthPart.Substring(0, 1);
-                if (!String.IsNullOrEmpty(timeZonePart))
+                if (!string.IsNullOrEmpty(timeZonePart))
                     SetTimeZonePart(timeZonePart);
 
                 var monthPart = timeZoneMonthPart.Remove(0, timeZonePart.Length);
-                if (!String.IsNullOrEmpty(monthPart))
+                if (!string.IsNullOrEmpty(monthPart))
                     SetMonthPart(monthPart);
             }                        
 
             var yearPart = dtgVal.Remove(0, dayTimePart.Length + timeZoneMonthPart.Length);
-            if (!String.IsNullOrEmpty(yearPart))
+            if (!string.IsNullOrEmpty(yearPart))
                 SetYearPart(yearPart);
         }
 
@@ -103,7 +103,7 @@ namespace MilitaryDtg
         /// <param name="dayTimePart"></param>
         private void SetDayHourMinuteSecond(string dayTimePart)
         {
-            if (String.IsNullOrEmpty(dayTimePart)) throw new ArgumentNullException("dayTimePart");
+            if (string.IsNullOrEmpty(dayTimePart)) throw new ArgumentNullException("dayTimePart");
 
             int day = 0, hour = 0, minute = 0, second = 0;
             if (dayTimePart.Length % 2 == 0)
@@ -148,7 +148,7 @@ namespace MilitaryDtg
         /// <param name="yearPart"></param>
         private void SetYearPart(string yearPart)
         {
-            if (String.IsNullOrEmpty(yearPart)) throw new ArgumentNullException("yearPart");
+            if (string.IsNullOrEmpty(yearPart)) throw new ArgumentNullException("yearPart");
 
             var year = 0;
             if (yearPart.Length == 2)
@@ -174,9 +174,9 @@ namespace MilitaryDtg
         /// <param name="timeZonePart"></param>
         private void SetTimeZonePart(string timeZonePart)
         {
-            if (String.IsNullOrEmpty(timeZonePart)) throw new ArgumentNullException("timeZonePart");
+            if (string.IsNullOrEmpty(timeZonePart)) throw new ArgumentNullException("timeZonePart");
 
-            if (timeZonePart.Length == 1 && Char.IsLetter(timeZonePart[0])) // It is one character and it is a letter.
+            if (timeZonePart.Length == 1 && char.IsLetter(timeZonePart[0])) // It is one character and it is a letter.
             {
                 this.MilTimeZoneAbbreviation = timeZonePart;
             }
@@ -188,7 +188,7 @@ namespace MilitaryDtg
         /// <param name="monthPart"></param>
         private void SetMonthPart(string monthPart)
         {
-            if (String.IsNullOrEmpty(monthPart)) throw new ArgumentNullException("monthPart");
+            if (string.IsNullOrEmpty(monthPart)) throw new ArgumentNullException("monthPart");
 
             if (monthPart.Length == 3) // Three-letter month name abbreviation.
             {

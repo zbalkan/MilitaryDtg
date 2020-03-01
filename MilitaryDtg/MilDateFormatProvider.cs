@@ -31,16 +31,16 @@ namespace MilitaryDtg
         public string Format(string format, object arg, IFormatProvider formatProvider)
         {
             var mildateString = string.Empty;
-            var thisFmt = String.Empty;
+            var thisFmt = string.Empty;
 
-            if (!String.IsNullOrEmpty(format))
+            if (!string.IsNullOrEmpty(format))
                 thisFmt = format;
 
             if (arg is IMilDate)
             {
                 var repChar = '*';
                 var dtgTimeZone = Properties.Settings.Default.DateTimeGroupTimeZoneFormatString;
-                var replaceString = String.Empty.PadRight(dtgTimeZone.Length, repChar);
+                var replaceString = string.Empty.PadRight(dtgTimeZone.Length, repChar);
                 var milDate = arg as IMilDate;
                 var dto = milDate.MilDateOffset;
                 mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString)).Replace(replaceString, milDate.MilTimeZone.Abbreviation);
@@ -53,7 +53,7 @@ namespace MilitaryDtg
                 }
                 catch (FormatException e)
                 {
-                    throw new FormatException(String.Format("The format of '{0}' is invalid.", format), e);
+                    throw new FormatException(string.Format("The format of '{0}' is invalid.", format), e);
                 }
             }
 
@@ -67,7 +67,7 @@ namespace MilitaryDtg
             else if (arg != null)
                 return arg.ToString();
             else
-                return String.Empty;
+                return string.Empty;
         }
 
     }

@@ -8,7 +8,7 @@ namespace MilitaryDtg
 {
     static class StringExtensions
     {
-        public static IEnumerable<String> SplitInParts(this String s, Int32 partLength)
+        public static IEnumerable<string> SplitInParts(this string s, int partLength)
         {
             if (s == null)
                 throw new ArgumentNullException("s");

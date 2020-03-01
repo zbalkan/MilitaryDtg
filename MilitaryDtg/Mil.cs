@@ -77,7 +77,7 @@ namespace MilitaryDtg
         /// <summary>
         /// Military time zone names
         /// </summary>
-        public static IReadOnlyCollection<String> TimeZoneNames = new String[]
+        public static IReadOnlyCollection<string> TimeZoneNames = new string[]
         {
             Alphabet.Alpha,
             Alphabet.Bravo,
