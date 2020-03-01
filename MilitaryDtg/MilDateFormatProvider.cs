@@ -53,7 +53,7 @@ namespace MilitaryDtg
                 }
                 catch (FormatException e)
                 {
-                    throw new FormatException(string.Format("The format of '{0}' is invalid.", format), e);
+                    throw new FormatException($"The format of '{format}' is invalid.", e);
                 }
             }
 
