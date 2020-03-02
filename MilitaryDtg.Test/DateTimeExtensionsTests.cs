@@ -14,8 +14,8 @@ namespace MilitaryDtg.Test
             var tz = TimeZoneInfo.Utc;
             var milDate = dateTime.ToDTG(tz);
             
-            Assert.AreEqual(tz.ToMilitaryTimeZoneName(), milDate.MilTimeZone.MilTimeZoneName);
-            Assert.AreEqual(tz.ToMilitaryTimeZone(), milDate.MilTimeZone.Abbreviation);
+            Assert.AreEqual(tz.ToDTZ().MilTimeZoneName, milDate.MilTimeZone.MilTimeZoneName);
+            Assert.AreEqual(tz.ToDTZ().Abbreviation, milDate.MilTimeZone.Abbreviation);
         }
 
         [TestMethod]
@@ -25,8 +25,8 @@ namespace MilitaryDtg.Test
             var tz = TimeZoneInfo.Local;
             var milDate = dateTime.ToDTG();
 
-            Assert.AreEqual(tz.ToMilitaryTimeZoneName(), milDate.MilTimeZone.MilTimeZoneName);
-            Assert.AreEqual(tz.ToMilitaryTimeZone(), milDate.MilTimeZone.Abbreviation);
+            Assert.AreEqual(tz.ToDTZ().MilTimeZoneName, milDate.MilTimeZone.MilTimeZoneName);
+            Assert.AreEqual(tz.ToDTZ().Abbreviation, milDate.MilTimeZone.Abbreviation);
         }
     }
 }
