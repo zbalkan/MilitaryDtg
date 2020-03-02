@@ -17,37 +17,31 @@ namespace MilitaryDtg.Test
             Assert.AreEqual(milZoneAbbr, milDtgOffset.MilTimeZone.Abbreviation);
         }
 
+
+
         [TestMethod]
-        public void GetMilDateFromStringTest()
+        public void GetMilDateFromString_WithSpaceAndFourDigitYear()
         {
             var dtgString = "07142509 Z OCT 2017";
             var format = Resources.DefaultDateTimeGroupStringFormat;
-
             var mdto = DateTimeMil.GetMilDateFromString(dtgString);
-            if (mdto.MilDateOffset.HasValue)
-            {
-                Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
-                Assert.AreEqual(14, mdto.MilDateOffset.Value.Hour);
-                Assert.AreEqual(25, mdto.MilDateOffset.Value.Minute);
-                Assert.AreEqual(9, mdto.MilDateOffset.Value.Second);
-                Assert.AreEqual(Mil.Alphabet.Zulu, mdto.MilTimeZone.MilTimeZoneName);
-                Assert.AreEqual(10, mdto.MilDateOffset.Value.Month);
-                Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
-                Assert.AreEqual(dtgString, mdto.ToString().ToUpper());
-                Assert.AreEqual(dtgString, mdto.ToString(format).ToUpper());
-            }
+            if (!mdto.MilDateOffset.HasValue) return;
+            Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
+            Assert.AreEqual(14, mdto.MilDateOffset.Value.Hour);
+            Assert.AreEqual(25, mdto.MilDateOffset.Value.Minute);
+            Assert.AreEqual(9, mdto.MilDateOffset.Value.Second);
+            Assert.AreEqual(Mil.Alphabet.Zulu, mdto.MilTimeZone.MilTimeZoneName);
+            Assert.AreEqual(10, mdto.MilDateOffset.Value.Month);
+            Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
+            Assert.AreEqual(dtgString, mdto.ToString().ToUpper());
+            Assert.AreEqual(dtgString, mdto.ToString(format).ToUpper());
+        }
 
-            dtgString = "07ZOCT17";
-            if (mdto.MilDateOffset.HasValue)
-            {
-                mdto = DateTimeMil.GetMilDateFromString(dtgString);
-                Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
-                Assert.AreEqual(Mil.Alphabet.Zulu, mdto.MilTimeZone.MilTimeZoneName);
-                Assert.AreEqual(10, mdto.MilDateOffset.Value.Month);
-                Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
-            }
-
-            dtgString = "071345CNOV17";
+        [TestMethod]
+        public void GetMilDateFromString_NoSpaceWithTwoDigitYear()
+        {
+            var dtgString = "071345CNOV17";
+            var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (!mdto.MilDateOffset.HasValue) return;
             mdto = DateTimeMil.GetMilDateFromString(dtgString);
             Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
@@ -56,6 +50,19 @@ namespace MilitaryDtg.Test
             Assert.AreEqual(0, mdto.MilDateOffset.Value.Second);
             Assert.AreEqual(Mil.Alphabet.Charlie, mdto.MilTimeZone.MilTimeZoneName);
             Assert.AreEqual(11, mdto.MilDateOffset.Value.Month);
+            Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
+        }
+
+        [TestMethod]
+        public void GetMilDateFromString_NoSpaceNoTimeWithTwoDigitYear()
+        {
+            var dtgString = "07ZOCT17";
+            var mdto = DateTimeMil.GetMilDateFromString(dtgString);
+            if (!mdto.MilDateOffset.HasValue) return;
+            mdto = DateTimeMil.GetMilDateFromString(dtgString);
+            Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);
+            Assert.AreEqual(Mil.Alphabet.Zulu, mdto.MilTimeZone.MilTimeZoneName);
+            Assert.AreEqual(10, mdto.MilDateOffset.Value.Month);
             Assert.AreEqual(2017, mdto.MilDateOffset.Value.Year);
         }
 
