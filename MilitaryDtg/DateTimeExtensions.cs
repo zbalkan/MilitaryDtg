@@ -14,5 +14,17 @@ namespace MilitaryDtg
 
 
         public static DTG ToDTG(this DateTime dateTime) => dateTime.ToDTG(TimeZoneInfo.Local);
+
+        public static DateTime? ToDateTime(this string DTGAsString)
+        {
+            var milDate = DateTimeMil.GetMilDateFromString(DTGAsString);
+            var dtg = new DTG(milDate);
+            return dtg.ToDateTime();
+        }
+
+        public static DateTime? ToDateTime(this DTG dtg)
+        {
+            return dtg.MilDateOffset?.DateTime;
+        }
     }
 }
