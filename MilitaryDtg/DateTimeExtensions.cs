@@ -17,9 +17,7 @@ namespace MilitaryDtg
 
         public static DateTime? ToDateTime(this string DTGAsString)
         {
-            var milDate = DateTimeMil.GetMilDateFromString(DTGAsString);
-            var dtg = new DTG(milDate);
-            return dtg.ToDateTime();
+            return new DTG(DateTimeMil.GetMilDateFromString(DTGAsString)).ToDateTime();
         }
 
         public static DateTime? ToDateTime(this DTG dtg)
