@@ -5,8 +5,8 @@ namespace MilitaryDtg
 {
     public static class TimeZoneInfoExtensions
     {
-        public static char ToMilitaryTimeZone(this TimeZoneInfo timeZoneInfo) =>
-            ((Mil.TimeZoneOffset) timeZoneInfo.BaseUtcOffset.Hours).ToString()[0];
+        public static string ToMilitaryTimeZone(this TimeZoneInfo timeZoneInfo) =>
+            ((Mil.TimeZoneOffset) timeZoneInfo.BaseUtcOffset.Hours).ToString();
 
         public static string ToMilitaryTimeZoneName(this TimeZoneInfo timeZoneInfo)
         {
