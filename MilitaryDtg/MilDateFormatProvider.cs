@@ -33,7 +33,9 @@ namespace MilitaryDtg
                 var dtgTimeZone = Formats.DateTimeGroupTimeZoneFormatString;
                 var replaceString = string.Empty.PadRight(dtgTimeZone.Length, repChar);
                 var dto = milDate.MilDateOffset;
-                mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString, StringComparison.InvariantCulture), formatProvider)
+                mildateString = dto.Value
+                    .ToString(thisFmt.Replace(dtgTimeZone, replaceString, StringComparison.InvariantCulture),
+                        formatProvider)
                     .Replace(replaceString, milDate.MilTimeZone.Abbreviation, StringComparison.InvariantCulture);
             }
             else

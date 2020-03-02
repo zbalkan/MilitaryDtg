@@ -6,15 +6,9 @@ namespace MilitaryDtg
     {
         private readonly MilDate _milDate;
 
-        public DTG()
-        {
-            _milDate = new MilDate();
-        }
+        public DTG() => _milDate = new MilDate();
 
-        internal DTG(IMilDate milDate)
-        {
-            _milDate = (MilDate)milDate;
-        }
+        internal DTG(IMilDate milDate) => _milDate = (MilDate) milDate;
 
         /// <inheritdoc />
         public IMilTimeZone MilTimeZone
