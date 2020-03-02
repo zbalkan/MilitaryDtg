@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using MilitaryDtg.Properties;
 
 namespace MilitaryDtg
 {
@@ -31,7 +30,7 @@ namespace MilitaryDtg
             if (arg is IMilDate milDate)
             {
                 const char repChar = '*';
-                var dtgTimeZone = Resources.DateTimeGroupTimeZoneFormatString;
+                var dtgTimeZone = Formats.DateTimeGroupTimeZoneFormatString;
                 var replaceString = string.Empty.PadRight(dtgTimeZone.Length, repChar);
                 var dto = milDate.MilDateOffset;
                 mildateString = dto.Value.ToString(thisFmt.Replace(dtgTimeZone, replaceString, StringComparison.InvariantCulture), formatProvider)

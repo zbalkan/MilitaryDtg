@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MilitaryDtg.Properties;
 
 namespace MilitaryDtg.Test
 {
@@ -23,7 +22,7 @@ namespace MilitaryDtg.Test
         public void GetMilDateFromString_WithSpaceAndFourDigitYear()
         {
             var dtgString = "07142509 Z OCT 2017";
-            var format = Resources.DefaultDateTimeGroupStringFormat;
+            var format = Formats.DefaultDateTimeGroupStringFormat;
             var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (!mdto.MilDateOffset.HasValue) return;
             Assert.AreEqual(7, mdto.MilDateOffset.Value.Day);

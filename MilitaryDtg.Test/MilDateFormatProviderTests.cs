@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MilitaryDtg.Properties;
 
 namespace MilitaryDtg.Test
 {
@@ -10,7 +9,7 @@ namespace MilitaryDtg.Test
         public void FormatTest()
         {
             const string dtgString = "07142509 Z OCT 2017";
-            var format = "{0:" + Resources.DefaultDateTimeGroupStringFormat + "}";
+            var format = "{0:" + Formats.DefaultDateTimeGroupStringFormat + "}";
             var mdto = DateTimeMil.GetMilDateFromString(dtgString);
             if (!mdto.MilDateOffset.HasValue) return;
             var mdtoString = string.Format(new MilDateFormatProvider(), format, mdto).ToUpper();

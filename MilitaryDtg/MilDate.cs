@@ -1,5 +1,4 @@
 ﻿using System;
-using MilitaryDtg.Properties;
 
 namespace MilitaryDtg
 {
@@ -30,7 +29,7 @@ namespace MilitaryDtg
         /// <returns></returns>
         public override string ToString()
         {
-            var format = "{0:" + Resources.DefaultDateTimeGroupStringFormat + "}";
+            var format = "{0:" + Formats.DefaultDateTimeGroupStringFormat + "}";
             var mdtoString = string.Format(new MilDateFormatProvider(), format, this);
             return mdtoString;
         }
