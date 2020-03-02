@@ -5,7 +5,7 @@ namespace MilitaryDtg
 {
     internal static class StringExtensions
     {
-        public static IEnumerable<string> SplitInParts(this string s, int partLength)
+        internal static IEnumerable<string> SplitInParts(this string s, int partLength)
         {
             if (s == null)
                 throw new ArgumentNullException(nameof(s));

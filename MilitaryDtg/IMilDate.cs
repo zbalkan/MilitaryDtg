@@ -2,7 +2,7 @@
 
 namespace MilitaryDtg
 {
-    public interface IMilDate
+    internal interface IMilDate
     {
         IMilTimeZone MilTimeZone { get; set; }
         DateTimeOffset? MilDateOffset { get; set; }

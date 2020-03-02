@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MilitaryDtg
 {
-    public struct Mil
+    internal struct Mil
     {
         /// <summary>
         ///     Military Phonetic Alphabet properties.

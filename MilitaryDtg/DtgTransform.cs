@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace MilitaryDtg
 {
-    public class DtgTransform : IDtgTransform
+    internal class DtgTransform : IDtgTransform
     {
-        public DtgTransform(string dateTimeGroupString)
+        internal DtgTransform(string dateTimeGroupString)
         {
             ProcessDtgTransform(dateTimeGroupString);
         }

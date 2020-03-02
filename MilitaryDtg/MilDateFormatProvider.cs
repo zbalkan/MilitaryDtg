@@ -9,7 +9,7 @@ namespace MilitaryDtg
     ///     value to insert military time zone abbreviation.  MilDateFormatProvider uses
     ///     same string formats as System.DateTimeOffset type.
     /// </summary>
-    public class MilDateFormatProvider : IFormatProvider, ICustomFormatter
+    internal class MilDateFormatProvider : IFormatProvider, ICustomFormatter
     {
         /// <summary>
         ///     Adds the Properties.Settings.Default.DateTimeGroupTimeZoneFormatString

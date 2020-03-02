@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace MilitaryDtg
 {
-    public static class DateTimeMil
+    internal static class DateTimeMil
     {
         static DateTimeMil()
         {

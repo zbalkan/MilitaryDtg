@@ -2,7 +2,7 @@
 
 namespace MilitaryDtg
 {
-    public class MilTimeZone : IMilTimeZone
+    internal class MilTimeZone : IMilTimeZone
     {
         public int Offset { get; set; }
 
