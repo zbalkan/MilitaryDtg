@@ -8,7 +8,7 @@ namespace MilitaryDtg
     {
         static DateTimeMil()
         {
-            MilTimeZones = new List<IMilTimeZone>();
+            MilTimeZones = new List<DTZ>();
             foreach (var value in Enum.GetValues(typeof(Mil.TimeZoneOffset)))
             {
                 var intVal = (int) value;
@@ -16,13 +16,13 @@ namespace MilitaryDtg
                 var tZ = Mil.SystemTimeZones.FirstOrDefault(i => i.BaseUtcOffset.Hours.Equals(intVal));
                 var mTName = Mil.TimeZoneNames.FirstOrDefault(z =>
                     z.StartsWith(strVal, StringComparison.InvariantCultureIgnoreCase));
-                MilTimeZones.Add(new MilTimeZone
+                MilTimeZones.Add(new DTZ
                     {TimeZoneInfo = tZ, Abbreviation = strVal, Offset = intVal, MilTimeZoneName = mTName});
             }
         }
 
         // ReSharper disable once MemberCanBePrivate.Global
-        public static IList<IMilTimeZone> MilTimeZones { get; }
+        public static IList<DTZ> MilTimeZones { get; }
 
         public static IMilDate GetMilDate(DateTime? date, string milTimeZoneAbbreviation)
         {
@@ -31,7 +31,7 @@ namespace MilitaryDtg
             var mtz = MilTimeZones.FirstOrDefault(i =>
                 milTimeZoneAbbreviation != null &&
                 i.Abbreviation.Equals(milTimeZoneAbbreviation, StringComparison.InvariantCulture));
-            mdto.MilTimeZone = mtz;
+            mdto.DTZ = mtz;
             if (mtz != null) mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             return mdto;
         }
@@ -45,7 +45,7 @@ namespace MilitaryDtg
             var mtz = MilTimeZones.FirstOrDefault(i =>
                 i.Abbreviation != null &&
                 i.Abbreviation.Equals(dT.MilTimeZoneAbbreviation, StringComparison.InvariantCulture));
-            mdto.MilTimeZone = mtz;
+            mdto.DTZ = mtz;
             if (mtz != null) mdto.MilDateOffset = new DateTimeOffset(date.Value, mtz.TimeZoneInfo.BaseUtcOffset);
             return mdto;
         }

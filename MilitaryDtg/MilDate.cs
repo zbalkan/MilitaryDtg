@@ -6,7 +6,7 @@ namespace MilitaryDtg
     {
         public DateTimeOffset? MilDateOffset { get; set; }
 
-        public IMilTimeZone MilTimeZone { get; set; }
+        public DTZ DTZ { get; set; }
 
         /// <summary>
         ///     Return Date Time Group (DTG) string passing a format

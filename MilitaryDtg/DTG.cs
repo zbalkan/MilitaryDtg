@@ -11,10 +11,10 @@ namespace MilitaryDtg
         internal DTG(IMilDate milDate) => _milDate = (MilDate) milDate;
 
         /// <inheritdoc />
-        public IMilTimeZone MilTimeZone
+        public DTZ DTZ
         {
-            get => _milDate.MilTimeZone;
-            set => _milDate.MilTimeZone = value;
+            get => _milDate.DTZ;
+            set => _milDate.DTZ = value;
         }
 
         /// <inheritdoc />

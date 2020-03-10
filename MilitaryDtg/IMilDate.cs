@@ -4,7 +4,7 @@ namespace MilitaryDtg
 {
     internal interface IMilDate
     {
-        IMilTimeZone MilTimeZone { get; set; }
+        DTZ DTZ { get; set; }
         DateTimeOffset? MilDateOffset { get; set; }
         string ToString(string format);
     }

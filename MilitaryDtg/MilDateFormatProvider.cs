@@ -36,7 +36,7 @@ namespace MilitaryDtg
                 mildateString = dto.Value
                     .ToString(thisFmt.Replace(dtgTimeZone, replaceString, StringComparison.InvariantCulture),
                         formatProvider)
-                    .Replace(replaceString, milDate.MilTimeZone.Abbreviation, StringComparison.InvariantCulture);
+                    .Replace(replaceString, milDate.DTZ.Abbreviation, StringComparison.InvariantCulture);
             }
             else
             {
