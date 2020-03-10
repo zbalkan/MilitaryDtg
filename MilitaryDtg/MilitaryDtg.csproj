@@ -11,6 +11,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
